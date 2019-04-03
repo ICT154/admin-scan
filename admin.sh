@@ -15,7 +15,7 @@ else
 fi
 return
 }
-exec 3> output.txt
+check
 function banner(){
 printf "${RED}
 \t[ c0der by widhisec       ]
