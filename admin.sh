@@ -28,7 +28,6 @@ fc=$(lynx -head -dump "$urls/$x" | grep -n "1" | cut -d "8" -f1 | cut -d "6" -f3
 stas; return
 }
 stas(){
-printf "${GREEN}STATUS : ${WHITE}%s$fc => $urls/$x \n" >> output.txt
 printf "${GREEN}STATUS : ${WHITE}%s$fc => $urls/$x \n"
 }
 printf ""
