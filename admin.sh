@@ -18,7 +18,7 @@ return
 exec 3> output.txt
 function banner(){
 printf "${RED}
-\t[ c0der by widhi gansea;v ]
+\t[ c0der by widhisec       ]
 \t[ admin finder with bash  ]
 \t\033[0;36mPowered by ZseCc0de-Crew.ID
 "
