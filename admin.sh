@@ -6,6 +6,8 @@ WHITE=$(tput setaf 7) #PUTIH
 CYAN=$(tput setaf 6) #CYAN
 RED=$(tput setaf 1) #MERAH
 NORMAL=$(tput sgr0)
+coun=2
+threads=18
 function check(){
 wget -q --spider http://google.com
 if [ $? -eq 0 ]; then
@@ -42,10 +44,15 @@ echo -e -n $CYAN'[*]'$WHITE"URL HERE :"
 read urls
 echo -e -n $CYAN'[?]'$WHITE"LIST HERE :" 
 read lisz
-if [ ! -f $lisz ]; then
+if [ ! -e $lisz ]; then
 printf "empaz Not found\n"
 exit
 fi
-for x in $(gawk '{ print $1 }' $lisz);do 
-	scanlgsg $urls %20
+N=10
+(
+for x in $(cat $lisz);do 
+    ((i=i%N)); ((i++==0)) && wait
+    scanlgsg "$lisz" &
+    wait
 done
+)
