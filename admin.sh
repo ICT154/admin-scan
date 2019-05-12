@@ -1,13 +1,11 @@
 #!/bin/bash
-# last update : 08/04/2019
+# last update : 12/05/2019
 clear;clear
 GREEN=$(tput setaf 2) #HIJAU
 WHITE=$(tput setaf 7) #PUTIH
-CYAN=$(tput setaf 6) #CYAN
+CYAN=$(tput setaf 6)
 RED=$(tput setaf 1) #MERAH
 NORMAL=$(tput sgr0)
-coun=2
-threads=18
 function check(){
 wget -q --spider http://google.com
 if [ $? -eq 0 ]; then
@@ -33,11 +31,9 @@ printf "${RED}
 }
 function scanlgsg(){
 fc=$(lynx -head -dump "$urls/$x" | grep -n "1" | cut -d "8" -f1 | cut -d "6" -f3 | cut -d "9" -f6 | cut -d "5" -f1 | tr -d "4" | grep --text "1:.*" | awk '/:/{print $2}')
-status; return
-}
-status(){
 printf "${GREEN}STATUS : ${WHITE}%s$fc => $urls/$x \n"
 }
+hitung=15
 printf ""
 banner
 echo -e -n $CYAN'[*]'$WHITE"URL HERE :" 
@@ -48,11 +44,10 @@ if [ ! -e $lisz ]; then
 printf "empaz Not found\n"
 exit
 fi
-N=10
 (
 for x in $(cat $lisz);do 
-    ((i=i%N)); ((i++==0)) && wait
-    scanlgsg "$lisz" &
-    wait
+    ((i=i%hitung)); ((i++==0)) && wait
+    scanlgsg $x $urls $lisz $fc
 done
+wait
 )
